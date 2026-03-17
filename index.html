@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saint Catherine of Siena Foundation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #fdfcfa;
+            color: #2c2c2c;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 4rem 2rem 2rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ======= INTRO SPLASH ======= */
+        #intro {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #fdfcfa;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 1;
+            transition: opacity 1.2s ease;
+            will-change: opacity;
+        }
+
+        #intro.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #intro-header {
+            font-family: 'Times New Roman', Times, serif;
+            color: #8B2332;
+            font-size: 1.6rem;
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            will-change: opacity;
+        }
+
+        #intro-header.fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        #intro-header.fade-out {
+            animation: fadeOut 1s ease forwards;
+        }
+
+        #intro-columns {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+            justify-content: center;
+            position: relative;
+            will-change: transform;
+        }
+
+        #intro-columns.scroll-up {
+            animation: scrollUp 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        #intro-columns.scroll-up-fast {
+            animation: scrollUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .intro-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .intro-line {
+            font-family: 'Times New Roman', Times, serif;
+            color: #8B2332;
+            white-space: nowrap;
+            opacity: 0;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            will-change: opacity;
+        }
+
+        .intro-line.animate {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .intro-line.show {
+            opacity: 1;
+        }
+
+        /* ======= KEYFRAMES ======= */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes scrollUp {
+            from { transform: translateY(0); }
+            to { transform: translateY(-250vh); }
+        }
+
+        /* ======= MAIN SITE ======= */
+        .container {
+            max-width: 520px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            will-change: opacity;
+        }
+
+        .container.visible {
+            opacity: 1;
+        }
+
+        /* Decorative divider */
+        .divider {
+            margin: 2rem auto;
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #8B2332, transparent);
+        }
+
+        .lang-buttons {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .lang-buttons button {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 0.9rem;
+            background: none;
+            border: 1px solid #8B2332;
+            color: #8B2332;
+            padding: 0.4rem 0;
+            width: 5.5rem;
+            text-align: center;
+            cursor: pointer;
+            letter-spacing: 0.03em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .lang-buttons button:hover,
+        .lang-buttons button.active {
+            background-color: #8B2332;
+            color: #fdfcfa;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: normal;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+            color: #8B2332;
+            white-space: nowrap;
+        }
+
+        .motto {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #8B2332;
+            letter-spacing: 0.06em;
+            margin-bottom: 2.5rem;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            text-align: justify;
+        }
+
+        p a {
+            color: #8B2332;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom-color 0.3s ease;
+        }
+
+        p a:hover {
+            color: #6a1a27;
+            border-bottom-color: #6a1a27;
+        }
+
+        .officers {
+            margin-top: 0;
+        }
+
+        .officers h2 {
+            font-size: 1.25rem;
+            font-weight: normal;
+            color: #8B2332;
+            letter-spacing: 0.04em;
+            margin-bottom: 1rem;
+        }
+
+        .officers p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .address {
+            margin-top: 2rem;
+        }
+
+        .address p {
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: center;
+            color: #555;
+        }
+
+        /* Content wrapper crossfade */
+        #content-wrapper {
+            transition: opacity 0.9s ease;
+            will-change: opacity;
+        }
+
+        #content-wrapper.fade-out {
+            opacity: 0;
+        }
+
+        /* Small cross flourish */
+        .cross {
+            font-size: 1.2rem;
+            color: #8B2332;
+            margin-top: 1.5rem;
+            user-select: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ======= INTRO SPLASH ======= -->
+    <div id="intro">
+        <div id="intro-header">Fundatio Sanctae Catharinae Senensis</div>
+        <div id="intro-columns">
+
+            <!-- LEFT: Semitic, Arabic, Indic, African -->
+            <div class="intro-col">
+                <div class="intro-line" dir="rtl">&#1605;&#1572;&#1587;&#1587;&#1577; &#1575;&#1604;&#1602;&#1583;&#1610;&#1587;&#1577; &#1603;&#1575;&#1578;&#1585;&#1610;&#1606;&#1575; &#1605;&#1606; &#1587;&#1610;&#1610;&#1606;&#1575;</div>
+                <div class="intro-line" dir="rtl">&#1511;&#1512;&#1503; &#1511;&#1514;&#1512;&#1497;&#1504;&#1492; &#1492;&#1511;&#1491;&#1493;&#1513;&#1492; &#1502;&#1505;&#1497;&#1497;&#1504;&#1492;</div>
+                <div class="intro-line" dir="rtl">&#1662;&#1575;&#1740;&#1607; &#1587;&#1606;&#1578; &#1705;&#1575;&#1578;&#1585;&#1740;&#1606; &#1587;&#1740;&#1606;&#1575;</div>
+                <div class="intro-line" dir="rtl">&#1587;&#1610;&#1606;&#1575; &#1580;&#1610; &#1587;&#1610;&#1606;&#1657; &#1705;&#1610;&#1578;&#1726;&#1585;&#1740;&#1606; &#1601;&#1575;&#1572;&#1606;&#1672;&#1740;&#1588;&#1606;</div>
+                <div class="intro-line" dir="rtl">&#1505;&#1468;&#1461;&#1497;&#1504;&#1464;&#1488; &#1511;&#1463;&#1514;&#1463;&#1512;&#1497;&#1504;&#1464;&#1488; &#1508;&#1464;&#1493;&#1504;&#1491;&#1463;&#1510;&#1497;&#1506;</div>
+                <div class="intro-line">&#2360;&#2306;&#2340; &#2325;&#2376;&#2341;&#2352;&#2368;&#2344; &#2321;&#2347; &#2360;&#2367;&#2319;&#2344;&#2366;</div>
+                <div class="intro-line">&#2488;&#2472;&#2509;&#2468; &#2453;&#2509;&#2479;&#2494;&#2469;&#2503;&#2480;&#2495;&#2472; &#2437;&#2476; &#2488;&#2495;&#2479;&#2503;&#2472;&#2494;</div>
+                <div class="intro-line">&#2872;&#2818;&#2852; &#2837;&#2887;&#2853;&#2864;&#2880;&#2856; &#2835;&#2859; &#2872;&#2879;&#2831;&#2856;&#2878;</div>
+                <div class="intro-line">&#2965;&#3006;&#2980;&#2992;&#3007;&#2985;&#3006; &#2970;&#3007;&#2991;&#3014;&#2985;&#3006; &#2949;&#2993;&#2984;&#3007;&#2994;&#3016;&#2991;&#2990;&#3021;</div>
+                <div class="intro-line">&#3128;&#3142;&#3095;&#3149;&#3108;&#3149; &#3093;&#3134;&#3109;&#3120;&#3135;&#3112;&#3149; &#3078;&#3115;&#3149; &#3128;&#3135;&#3119;&#3142;&#3112;&#3134;</div>
+                <div class="intro-line">&#3221;&#3262;&#3236;&#3248;&#3263;&#3240;&#3262; &#3206;&#3235;&#3277; &#3256;&#3263;&#3247;&#3270;&#3240;&#3262;</div>
+                <div class="intro-line">&#3349;&#3390;&#3364;&#3390;&#3376;&#3392;&#3368; &#3385;&#3398; &#3384;&#3391;&#3351;&#3368;&#3390;</div>
+                <div class="intro-line">&#3461;&#3484;&#3524;&#3515; &#3482;&#3536;&#3501;&#3515;&#3538;&#3505;&#3535; &#3467;&#3508;&#3524;&#3535;&#3515;&#3514;</div>
+                <div class="intro-line">&#4683;&#4853;&#4661;&#4725; &#4776;&#4720;&#4650;&#4755; &#4828;&#4670;&#4755;</div>
+                <div class="intro-line">Taasisi ya Mtakatifu Katerina wa Siena</div>
+                <div class="intro-line">Mohlanka wa Katerina wa Siena</div>
+                <div class="intro-line">Izikhungo SikaKaterina WaseSiena</div>
+                <div class="intro-line">Gidauniyar Saint Katarina ta Siena</div>
+                <div class="intro-line">Senayi Katarina Dingqo</div>
+                <div class="intro-line">Fondation Sen Katrin Syenna</div>
+                <div class="intro-line">Uhola wa Katarina wa ku Siena</div>
+                <div class="intro-line">Fondasyon Sen Katrin Syenna</div>
+                <div class="intro-line">Asusul San Katerina ta Siena</div>
+                <div class="intro-line">Siti Katerina wa Siena Mazingira</div>
+                <div class="intro-line">Isikhwama SikaKaterina WaseSiena</div>
+                <div class="intro-line">Nnadozie Katerina nke Siena</div>
+                <div class="intro-line">Fundashon Santa Katarina di Siena</div>
+                <div class="intro-line">Fondasion Sainte Catherine de Sienne</div>
+                <div class="intro-line">Sekela ya Katerina ya Siena</div>
+                <div class="intro-line">Shishingirai yaKaterina yeSiena</div>
+                <div class="intro-line">Aanstichting Santa Katarina van Siena</div>
+                <div class="intro-line">Fondi wa Mtakatifu Katerina wa Siena</div>
+                <div class="intro-line">Mfuko wa Katerina wa Siena</div>
+                <div class="intro-line">Mokgatlo wa Katerina wa Siena</div>
+                <div class="intro-line">Fondasyon Sen Katerin Syena</div>
+            </div>
+
+            <!-- CENTER: Biblical + Indo-European -->
+            <div class="intro-col">
+                <div class="intro-line">Fundatio Sanctae Catharinae Senensis</div>
+                <div class="intro-line">&#7944;&#947;&#943;&#945; &#913;&#7984;&#954;&#945;&#964;&#949;&#961;&#943;&#957;&#951; &#964;&#951;&#962; &#931;&#953;&#941;&#957;&#945;&#962;</div>
+                <div class="intro-line">&#1340;&#1377;&#1382;&#1377;&#1391;&#1381;&#1409;&#1400;&#1410;&#1385;&#1397;&#1400;&#1410;&#1398; &#1357;&#1400;&#1410;&#1408;&#1378; &#1343;&#1377;&#1407;&#1377;&#1408;&#1387;&#1398;&#1381;&#1387;</div>
+                <div class="intro-line">&#4321;&#4304;&#4308;&#4320;&#4311;&#4304;&#4328;&#4317;&#4320;&#4312;&#4321;&#4317; &#4325;&#4308;&#4311;&#4308;&#4320;&#4312;&#4316;&#4308;</div>
+                <div class="intro-line">Saint Catherine of Siena Foundation</div>
+                <div class="intro-line">Fondazione Santa Caterina da Siena</div>
+                <div class="intro-line">Fundaci&oacute;n Santa Catalina de Siena</div>
+                <div class="intro-line">Fondation Sainte Catherine de Sienne</div>
+                <div class="intro-line">Funda&ccedil;&atilde;o Santa Catarina de Siena</div>
+                <div class="intro-line">Funda&#539;ia Sfintei Ecaterina din Siena</div>
+                <div class="intro-line">Fundaci&oacute;n de Santa Caterina de Siena</div>
+                <div class="intro-line">Fundaci&oacute;n Santa Catarina de Siena</div>
+                <div class="intro-line">Stiftung der heiligen Katharina von Siena</div>
+                <div class="intro-line">Sankt Katarina af Siena Fonden</div>
+                <div class="intro-line">Stichting Sint-Catharina van Siena</div>
+                <div class="intro-line">Fundacja &#346;wi&#281;tej Katarzyny ze Sieny</div>
+                <div class="intro-line">Nad&#225;cia sv&#228;tej Katar&#237;ny Sienskej</div>
+                <div class="intro-line">Nadace svat&#233; Kate&#345;iny Siensk&#233;</div>
+                <div class="intro-line">Zaklada svete Katarine Sienske</div>
+                <div class="intro-line">Fondacija svete Katarine Sienske</div>
+                <div class="intro-line">Fondacioni i Sh&#235;n Katerina e Sien&#235;s</div>
+                <div class="intro-line">Pusiasv&#261; Kotrynos Sieniet&#279;s fondas</div>
+                <div class="intro-line">Sv&#275;t&#257;s Kater&#299;nas no Sjenas fonds</div>
+                <div class="intro-line">P&#252;ha Katariina Siena Sihtasutus</div>
+                <div class="intro-line">&#1057;&#1074;&#1103;&#1090;&#1072;&#1103; &#1045;&#1082;&#1072;&#1090;&#1077;&#1088;&#1080;&#1085;&#1072; &#1057;&#1080;&#1077;&#1085;&#1089;&#1082;&#1072;&#1103;</div>
+                <div class="intro-line">&#1060;&#1086;&#1085;&#1076;&#1072;&#1094;&#1110;&#1103; &#1089;&#1074;&#1103;&#1090;&#1086;&#1111; &#1050;&#1072;&#1090;&#1077;&#1088;&#1080;&#1085;&#1080; &#1057;&#1110;&#1108;&#1085;&#1089;&#1100;&#1082;&#1086;&#1111;</div>
+                <div class="intro-line">&#1047;&#1072;&#1082;&#1083;&#1072;&#1076;&#1072; &#1085;&#1072; &#1057;&#1074;. &#1045;&#1082;&#1072;&#1090;&#1077;&#1088;&#1080;&#1085;&#1072; &#1086;&#1090; &#1057;&#1080;&#1077;&#1085;&#1072;</div>
+                <div class="intro-line">&#1060;&#1086;&#1085;&#1076;&#1072;&#1094;&#1080;&#1112;&#1072; &#1057;&#1074;. &#1050;&#1072;&#1090;&#1072;&#1088;&#1080;&#1085;&#1072; &#1086;&#1076; &#1057;&#1080;&#1077;&#1085;&#1072;</div>
+                <div class="intro-line">&#1060;&#1086;&#1085;&#1076;&#1072;&#1094;&#1080;&#1112;&#1072; &#1057;&#1074;&#1077;&#1090;&#1077; &#1050;&#1072;&#1090;&#1072;&#1088;&#1080;&#1085;&#1077; &#1057;&#1080;&#1112;&#1077;&#1085;&#1089;&#1082;&#1077;</div>
+                <div class="intro-line">&#1041;&#1077;&#1083;&#1072;&#1088;&#1091;&#1089;&#1082;&#1072;&#1103; &#1060;&#1091;&#1085;&#1076;&#1072;&#1094;&#1099;&#1103; &#1050;&#1072;&#1094;&#1103;&#1088;&#1099;&#1085;&#1099; &#1057;&#1110;&#1077;&#1085;&#1089;&#1082;&#1072;&#1081;</div>
+                <div class="intro-line">&#922;&#945;&#952;&#943;&#948;&#961;&#965;&#956;&#945; &#913;&#947;&#943;&#945;&#962; &#913;&#953;&#954;&#945;&#964;&#949;&#961;&#943;&#957;&#951;&#962; &#964;&#951;&#962; &#931;&#953;&#941;&#957;&#945;&#962;</div>
+                <div class="intro-line">Heilagrar Kathr&#237;nar af S&#237;ena stofnun</div>
+                <div class="intro-line">Stiftelsen Heliga Katarina av Siena</div>
+                <div class="intro-line">Pyh&#228;n Katariina Sienalaisen s&#228;&#228;ti&#246;</div>
+                <div class="intro-line">Stifting fan de Hillige Katarina fan Siena</div>
+                <div class="intro-line">Bun&#225;das Naomh Caitl&#237;n Siena</div>
+                <div class="intro-line">Sefydliad Catrin Sanctaidd Siena</div>
+                <div class="intro-line">Diazezadur Santez Katell Siena</div>
+                <div class="intro-line">Fundazion de Santa Catarina de Siena</div>
+                <div class="intro-line">Fundaci&#243;n de Santa Catalina de Sena</div>
+            </div>
+
+            <!-- RIGHT: East Asian + Southeast Asian + Pacific -->
+            <div class="intro-col">
+                <div class="intro-line">&#32854;&#12459;&#12479;&#12522;&#12490;&#12539;&#12487;&#12451;&#12539;&#12471;&#12456;&#12490;&#36001;&#22243;</div>
+                <div class="intro-line">&#49884;&#50640;&#45208;&#51032; &#49457;&#45376; &#52852;&#53440;&#47532;&#45208; &#51116;&#45800;</div>
+                <div class="intro-line">&#22307;&#21152;&#22823;&#21033;&#32435;&#183;&#38177;&#32822;&#32435;&#22522;&#37329;&#20250;</div>
+                <div class="intro-line">&#32854;&#21152;&#22823;&#21033;&#32013;&#183;&#37675;&#32822;&#32013;&#22522;&#37329;&#26371;</div>
+                <div class="intro-line">&#12475;&#12531;&#12488;&#12539;&#12459;&#12479;&#12522;&#12490;&#12539;&#12487;&#12451;&#12539;&#12471;&#12456;&#12490;&#22522;&#37329;</div>
+                <div class="intro-line">&#20869;&#38498;&#22307;&#21152;&#22823;&#21033;&#32435;&#22522;&#37329;&#20250;</div>
+                <div class="intro-line">&#49884;&#50640;&#45208; &#49457;&#45376; &#44032;&#53440;&#47532;&#45208; &#51116;&#45800;</div>
+                <div class="intro-line">&#3617;&#3641;&#3621;&#3609;&#3636;&#3608;&#3636;&#3609;&#3633;&#3585;&#3610;&#3640;&#3597;&#3649;&#3588;&#3607;&#3619;&#3636;&#3609;&#3649;&#3627;&#3656;&#3591;&#3648;&#3595;&#3637;&#3618;&#3609;&#3634;</div>
+                <div class="intro-line">Qu&#7929; Th&#225;nh Catherine th&#224;nh Siena</div>
+                <div class="intro-line">Yayasan Santa Katarina dari Siena</div>
+                <div class="intro-line">Pundasy&#243;n ng Santa Catalina ng Siena</div>
+                <div class="intro-line">Yayasan Santa Katarina Siena</div>
+                <div class="intro-line">&#6047;&#6040;&#6070;&#6018;&#6040;&#6050;&#6031;&#6091;&#6016;&#6070;&#6031;&#6074;&#6042;&#6072;&#6035;&#6070;&#6047;&#6090;&#6072;&#6041;&#6081;&#6035;&#6070;</div>
+                <div class="intro-line">&#4126;&#4116;&#4154;&#4151;&#4123;&#4158;&#4100;&#4154;&#4152;&#4096;&#4140;&#4126;&#4123;&#4100;&#4154;&#4152;&#4102;&#4142;&#4122;&#4141;&#4116;&#4140;&#4152;</div>
+                <div class="intro-line">&#3742;&#3761;&#3737;&#3713;&#3762;&#3735;&#3762;&#3749;&#3764;&#3737;&#3762;&#3754;&#3765;&#3776;&#3757;&#3737;&#3762;</div>
+                <div class="intro-line">&#3626;&#3634;&#3618;&#3610;&#3640;&#3597;&#3588;&#3634;&#3607;&#3634;&#3619;&#3636;&#3609;&#3634;&#3648;&#3595;&#3637;&#3618;&#3609;&#3634;</div>
+                <div class="intro-line">&#6016;&#6098;&#6042;&#6075;&#6040;&#6048;&#6090;&#6075;&#6035;&#6047;&#6070;&#6086;&#6031;&#6039;&#6098;&#6038;&#6035;&#6091;&#6016;&#6070;&#6031;&#6074;&#6042;&#6072;&#6035;&#6042;&#6020;&#6091;&#6047;&#6090;&#6072;&#6041;&#6081;&#6035;&#6070;</div>
+                <div class="intro-line">&#12480;&#12452;&#12475;&#12452;&#12459;&#12479;&#12522;&#12490;&#36001;&#22243;</div>
+                <div class="intro-line">&#50276;&#50640;&#45208; &#49457;&#45376; &#52852;&#53440;&#47532;&#45208;</div>
+                <div class="intro-line">Te Putea o Hato Katarina o Hiena</div>
+                <div class="intro-line">Ke Kumu Haipule o Ka Hoano Katarina</div>
+                <div class="intro-line">Yayasan Sint Katarina Siena</div>
+                <div class="intro-line">Pundasyon ni Santa Catalina ti Siena</div>
+                <div class="intro-line">Ang Pundasyon ni Santa Katarina</div>
+                <div class="intro-line">&#3648;&#3595;&#3609;&#3605;&#3660;&#3649;&#3588;&#3607;&#3648;&#3608;&#3629;&#3619;&#3637;&#3609;&#3649;&#3627;&#3656;&#3591;&#3648;&#3595;&#3637;&#3618;&#3609;&#3656;&#3634;</div>
+                <div class="intro-line">&#12471;&#12456;&#12490;&#12398;&#32854;&#12459;&#12479;&#12522;&#12490;&#36001;&#22243;</div>
+                <div class="intro-line">&#49457;&#45376; &#52852;&#53440;&#47532;&#45208; &#45817;&#45800;</div>
+                <div class="intro-line">&#22307;&#21152;&#22823;&#21033;&#32013;&#8226;&#37675;&#32822;&#32013;&#22522;&#37329;</div>
+                <div class="intro-line">&#12475;&#12531;&#12488;&#12459;&#12479;&#12522;&#12490;&#36001;&#22243;&#27861;&#20154;</div>
+                <div class="intro-line">M&#363;lanidhija Katarina Siena</div>
+                <div class="intro-line">Yayasan Sta. Katarina ng Siena</div>
+                <div class="intro-line">&#3617;&#3641;&#3621;&#3609;&#3636;&#3608;&#3636;&#3648;&#3595;&#3655;&#3609;&#3605;&#3660;&#3649;&#3588;&#3607;&#3648;&#3608;&#3629;&#3619;&#3637;&#3609;</div>
+                <div class="intro-line">Qu&#7929; t&#7915; thi&#7879;n Siena</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ======= MAIN SITE ======= -->
+    <div class="container" id="main-site">
+        <div class="lang-buttons">
+            <button class="active" onclick="setLang('en', this)">English</button>
+            <button onclick="setLang('la', this)">Latina</button>
+            <button onclick="setLang('it', this)">Italiano</button>
+        </div>
+
+        <div id="content-wrapper">
+        <h1 id="title">Saint Catherine of Siena Foundation</h1>
+        <div id="motto" class="motto">Pro salute animarum</div>
+            <p id="body-first" style="text-align:center; margin-bottom:1.2rem;">
+                Saint Catherine of Siena Foundation &ldquo;Siena Foundation&rdquo; is an affiliate of <a href="https://sienacapitalgroup.com" target="_blank">Siena Capital Group, LLC</a>.
+            </p>
+            <p id="body-text">
+                Our website is currently under construction and will be published in Q2 2026 alongside digital access to our first charitable project for the salvation of souls. Siena Foundation is a public charity exempt from federal income tax under IRC Section 501(c)(3). Donors can deduct contributions they make to Siena Foundation under IRC Section 170. Siena Foundation is also qualified to receive tax deductible bequests, devises, transfers or gifts under Section 2055, 2106, or 2522.
+            </p>
+            <p id="body-last" style="text-align:center; margin-top:1.2rem;">
+                <a href="https://apps.irs.gov/pub/epostcard/dl/FinalLetter_33-4351094_SAINTCATHERINEOFSIENAFOUNDATION_05132025_00.pdf" target="_blank" id="irs-link">Please view our IRS information here.</a>
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="officers">
+                <h2 id="officers-title">Officers &amp; Directors</h2>
+                <p>Luke Meehan &mdash; <span id="role-president">President, Director</span></p>
+                <p>Jack Stone &mdash; <span id="role-treasurer">Treasurer, Director</span></p>
+            </div>
+
+            <div class="address">
+                <p id="address-text">
+                    1 World Trade Center, Suite 8500<br>
+                    New York, NY 10007
+                </p>
+            </div>
+
+            <div class="cross">&#10013;</div>
+        </div>
+
+    </div>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ======= INTRO ANIMATION =======
+        var introPlaying = true;
+        var introSkipped = false;
+
+        var intro = document.getElementById('intro');
+        var introHeader = document.getElementById('intro-header');
+        var introColumns = document.getElementById('intro-columns');
+        var mainSite = document.getElementById('main-site');
+        var cols = document.querySelectorAll('.intro-col');
+        var allLines = document.querySelectorAll('.intro-line');
+        var maxRows = Math.max.apply(null, Array.from(cols).map(function(c) { return c.children.length; }));
+
+        // Use requestAnimationFrame for smooth sequencing
+        function scheduleRow(row) {
+            if (row >= maxRows) return;
+            var delay = 800 + row * 80;
+            setTimeout(function() {
+                if (introSkipped) return;
+                requestAnimationFrame(function() {
+                    cols.forEach(function(col) {
+                        var line = col.children[row];
+                        if (line) {
+                            line.style.animationDelay = '0s';
+                            line.classList.add('animate');
+                        }
+                    });
+                });
+            }, delay);
+        }
+
+        // Fade in header
+        setTimeout(function() {
+            introHeader.classList.add('fade-in');
+        }, 200);
+
+        // Stagger rows
+        for (var i = 0; i < maxRows; i++) {
+            scheduleRow(i);
+        }
+
+        var totalFadeTime = 800 + maxRows * 80 + 800;
+
+        // Scroll columns up
+        setTimeout(function() {
+            if (introSkipped) return;
+            introColumns.classList.add('scroll-up');
+            introHeader.classList.remove('fade-in');
+            introHeader.classList.add('fade-out');
+        }, totalFadeTime);
+
+        // Reveal main site
+        setTimeout(function() {
+            if (introSkipped) return;
+            finishIntro();
+        }, totalFadeTime + 2000);
+
+        function finishIntro() {
+            intro.classList.add('hidden');
+            mainSite.classList.add('visible');
+            setTimeout(function() {
+                intro.style.display = 'none';
+                introPlaying = false;
+            }, 1200);
+        }
+
+        function skipIntro() {
+            if (!introPlaying || introSkipped) return;
+            introSkipped = true;
+
+            // Show all lines instantly
+            allLines.forEach(function(l) {
+                l.classList.remove('animate');
+                l.classList.add('show');
+            });
+
+            // Fast scroll up
+            introColumns.classList.add('scroll-up-fast');
+            introHeader.classList.remove('fade-in');
+            introHeader.classList.add('fade-out');
+
+            setTimeout(function() {
+                finishIntro();
+            }, 900);
+        }
+
+        // Skip on scroll down
+        window.addEventListener('wheel', function(e) {
+            if (introPlaying && e.deltaY > 20) skipIntro();
+        }, { passive: true });
+
+        // Skip on any key
+        window.addEventListener('keydown', function() {
+            if (introPlaying) skipIntro();
+        });
+
+        // Touch swipe down to skip
+        var touchStartY = 0;
+        window.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchend', function(e) {
+            var deltaY = touchStartY - e.changedTouches[0].clientY;
+            if (introPlaying && deltaY > 40) skipIntro();
+        }, { passive: true });
+
+        // ======= TRANSLATIONS =======
+        var translations = {
+            en: {
+                title: "Saint Catherine of Siena Foundation",
+                motto: "Pro salute animarum",
+                bodyFirst: 'Saint Catherine of Siena Foundation \u201cSiena Foundation\u201d is an affiliate of <a href="https://sienacapitalgroup.com" target="_blank">Siena Capital Group, LLC</a>.',
+                body: 'Our website is currently under construction and will be published in Q2 2026 alongside digital access to our first charitable project for the salvation of souls. Siena Foundation is a public charity exempt from federal income tax under IRC Section 501(c)(3). Donors can deduct contributions they make to Siena Foundation under IRC Section 170. Siena Foundation is also qualified to receive tax deductible bequests, devises, transfers or gifts under Section 2055, 2106, or 2522.',
+                irsLink: "Please view our IRS information here.",
+                officersTitle: "Officers & Directors",
+                president: "President, Director",
+                treasurer: "Treasurer, Director",
+                address: "1 World Trade Center, Suite 8500<br>New York, NY 10007"
+            },
+            la: {
+                title: "Fundatio Sanctae Catharinae Senensis",
+                motto: "Pro salute animarum",
+                bodyFirst: 'Saint Catherine of Siena Foundation \u201cSiena Foundation\u201d consociata est <a href="https://sienacapitalgroup.com" target="_blank">Siena Capital Group, LLC</a>.',
+                body: 'Pagina nostra interretialis nunc in aedificatione est et in Q2 2026 divulgabitur una cum aditu digitali ad primum nostrum opus caritatis pro salute animarum. Siena Foundation est caritas publica immunis ab onere vectigalium foederalium sub IRC Section 501(c)(3). Donatores contributiones suas ad Siena Foundation factas deducere possunt sub IRC Section 170. Siena Foundation etiam apta est ad accipienda legata, devisa, translationes vel dona ab oneribus vectigalium deductibilia sub Section 2055, 2106, vel 2522.',
+                irsLink: "Quaesumus videte informationes nostras ab IRS hic.",
+                officersTitle: "Officiales et Directores",
+                president: "Praeses, Director",
+                treasurer: "Thesaurarius, Director",
+                address: "1 World Trade Center, Suite 8500<br>Novum Eboracum, NY 10007"
+            },
+            it: {
+                title: "Fondazione Santa Caterina da Siena",
+                motto: "Per la salvezza delle anime",
+                bodyFirst: 'Saint Catherine of Siena Foundation \u201cSiena Foundation\u201d \u00e8 un\u2019affiliata di <a href="https://sienacapitalgroup.com" target="_blank">Siena Capital Group, LLC</a>.',
+                body: 'Il nostro sito web \u00e8 attualmente in costruzione e sar\u00e0 pubblicato nel secondo trimestre del 2026 insieme all\u2019accesso digitale al nostro primo progetto caritatevole per la salvezza delle anime. Siena Foundation \u00e8 un ente di beneficenza pubblico esente dall\u2019imposta federale sul reddito ai sensi dell\u2019IRC Section 501(c)(3). I donatori possono detrarre i contributi versati a Siena Foundation ai sensi dell\u2019IRC Section 170. Siena Foundation \u00e8 inoltre qualificata a ricevere lasciti, devoluzioni, trasferimenti o doni deducibili dalle tasse ai sensi delle Section 2055, 2106 o 2522.',
+                irsLink: "Si prega di consultare le nostre informazioni IRS qui.",
+                officersTitle: "Dirigenti e Amministratori",
+                president: "Presidente, Amministratore",
+                treasurer: "Tesoriere, Amministratore",
+                address: "1 World Trade Center, Suite 8500<br>New York, NY 10007"
+            }
+        };
+
+        var switching = false;
+        var wrapper = document.getElementById('content-wrapper');
+
+        window.setLang = function(lang, btn) {
+            if (switching) return;
+            switching = true;
+
+            // Lock height to prevent layout shift
+            wrapper.style.minHeight = wrapper.offsetHeight + 'px';
+
+            // Fade out
+            wrapper.classList.add('fade-out');
+
+            // Update active button immediately
+            document.querySelectorAll('.lang-buttons button').forEach(function(b) {
+                b.classList.remove('active');
+            });
+            btn.classList.add('active');
+
+            // Wait for fade-out, swap content, fade back in
+            setTimeout(function() {
+                var t = translations[lang];
+                document.getElementById('title').textContent = t.title;
+                document.getElementById('motto').textContent = t.motto;
+                document.getElementById('body-first').innerHTML = t.bodyFirst;
+                document.getElementById('body-text').innerHTML = t.body;
+                document.getElementById('body-last').innerHTML = '<a href="https://apps.irs.gov/pub/epostcard/dl/FinalLetter_33-4351094_SAINTCATHERINEOFSIENAFOUNDATION_05132025_00.pdf" target="_blank" id="irs-link">' + t.irsLink + '</a>';
+                document.getElementById('officers-title').innerHTML = t.officersTitle;
+                document.getElementById('role-president').textContent = t.president;
+                document.getElementById('role-treasurer').textContent = t.treasurer;
+                document.getElementById('address-text').innerHTML = t.address;
+                document.documentElement.lang = lang;
+
+                // Force reflow
+                void wrapper.offsetHeight;
+
+                // Fade in
+                wrapper.classList.remove('fade-out');
+
+                // Release height lock after fade completes
+                setTimeout(function() {
+                    wrapper.style.minHeight = '';
+                    switching = false;
+                }, 950);
+            }, 950);
+        };
+
+    })();
+    </script>
+</body>
+</html>

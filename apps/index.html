@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apps — Siena Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0906;
+    --bg2: #110f0a;
+    --bg3: #181410;
+    --gold: #c8a030;
+    --gold-dim: #8a6a1a;
+    --gold-light: #e8c060;
+    --cream: #e8e0cc;
+    --cream-dim: #b0a888;
+    --ink: #f0e8d8;
+    --ink-dim: #a09878;
+    --border: rgba(200,160,48,0.2);
+    --border-strong: rgba(200,160,48,0.4);
+  }
+
+  html { background: var(--bg); color: var(--ink); font-family: 'EB Garamond', Georgia, serif; }
+
+  body { min-height: 100vh; overflow-x: hidden; }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  nav a {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    margin-left: 32px;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--gold); }
+  nav a.active { color: var(--gold); }
+
+  /* ── Page hero ── */
+  .page-hero {
+    padding: 80px 48px 60px;
+    border-bottom: 1px solid var(--border);
+    max-width: 860px;
+  }
+
+  .page-hero .overline {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+
+  .page-hero p {
+    font-size: 18px;
+    color: var(--ink-dim);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* ── App list ── */
+  .apps-container {
+    padding: 60px 48px;
+    max-width: 1100px;
+  }
+
+  /* ── Featured app card ── */
+  .app-featured {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 48px;
+    padding: 48px;
+    background: var(--bg2);
+    border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--gold);
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-featured::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(200,160,48,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    background: #0e0c08;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .app-icon svg { width: 100%; height: 100%; }
+
+  .app-body {}
+
+  .app-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .app-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .app-latin {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--gold-dim);
+    margin-bottom: 20px;
+  }
+
+  .app-desc {
+    font-size: 16px;
+    color: var(--ink-dim);
+    line-height: 1.75;
+    max-width: 580px;
+    margin-bottom: 28px;
+  }
+
+  .app-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .feature-pill {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: var(--cream-dim);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .app-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .btn-primary {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--gold);
+    padding: 12px 28px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid var(--border-strong);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+  .platform-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── Scripture quote ── */
+  .scripture {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 48px;
+    margin: 0 0 60px;
+    text-align: center;
+  }
+
+  .scripture blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream-dim);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .scripture cite {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ── Coming soon ── */
+  .coming-soon-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .coming-soon-card {
+    border: 1px dashed var(--border);
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    opacity: 0.5;
+  }
+
+  .coming-soon-dot {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    border: 1px dashed var(--border-strong);
+    flex-shrink: 0;
+  }
+
+  .coming-soon-text h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream-dim);
+    margin-bottom: 4px;
+  }
+
+  .coming-soon-text p {
+    font-size: 14px;
+    color: var(--ink-dim);
+  }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 80px;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--ink-dim);
+  }
+
+  footer a {
+    font-size: 13px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    margin-left: 24px;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 700px) {
+    header { padding: 20px 24px; }
+    .page-hero { padding: 48px 24px 40px; }
+    .page-hero h1 { font-size: 36px; }
+    .apps-container { padding: 40px 24px; }
+    .app-featured { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
+    .scripture { padding: 32px 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
+    footer a { margin-left: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://sienafoundation.org" class="logo">Siena Foundation</a>
+  <nav>
+    <a href="https://sienafoundation.org">Home</a>
+    <a href="#" class="active">Apps</a>
+    <a href="mailto:apps@sienafoundation.org">Contact</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <p class="overline">Software</p>
+  <h1>Tools for the<br>Interior Life</h1>
+  <p>Applications built on the philosophical and theological tradition of the Catholic Church, with the precision of Thomistic method applied to the formation of souls.</p>
+</div>
+
+<div class="apps-container">
+
+  <!-- Yoke featured card -->
+  <div class="app-featured">
+    <div>
+      <div class="app-icon">
+        <!-- Dominican crest icon SVG inline -->
+        <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="sc">
+              <path d="M340 555 Q210 475 210 335 L210 178 L340 158 L470 178 L470 335 Q470 475 340 555Z"/>
+            </clipPath>
+          </defs>
+          <rect width="680" height="680" fill="#0e0c08"/>
+          <path d="M222 138 Q262 112 340 106 Q418 112 458 138" fill="none" stroke="#c8a030" stroke-width="10" stroke-linecap="round"/>
+          <path d="M270 132 Q312 152 340 154 Q368 152 410 132" fill="none" stroke="#c8a030" stroke-width="7" stroke-linecap="round"/>
+          <line x1="224" y1="138" x2="224" y2="176" stroke="#c8a030" stroke-width="8" stroke-linecap="round"/>
+          <line x1="456" y1="138" x2="456" y2="176" stroke="#c8a030" stroke-width="8" stroke-linecap="round"/>
+          <circle cx="224" cy="162" r="18" fill="none" stroke="#c8a030" stroke-width="7"/>
+          <circle cx="456" cy="162" r="18" fill="none" stroke="#c8a030" stroke-width="7"/>
+          <path d="M340 555 Q210 475 210 335 L210 178 L340 158 L340 357 Z" fill="#e8e0cc" clip-path="url(#sc)"/>
+          <path d="M340 357 L470 178 L470 335 Q470 475 340 555 Z" fill="#e8e0cc" clip-path="url(#sc)"/>
+          <path d="M340 158 L470 178 L470 335 L340 357 Z" fill="#1a1410" clip-path="url(#sc)"/>
+          <path d="M210 178 L340 158 L340 357 L210 335 Z" fill="#1a1410" clip-path="url(#sc)"/>
+          <path d="M340 555 Q210 475 210 335 L210 178 L340 158 L470 178 L470 335 Q470 475 340 555Z" fill="none" stroke="#c8a030" stroke-width="3"/>
+          <g transform="translate(275,262)"><polygon points="0,-36 9,-9 36,0 9,9 0,36 -9,9 -36,0 -9,-9" fill="#c8a030" opacity="0.9"/><circle cx="0" cy="0" r="11" fill="#1a1410"/><circle cx="0" cy="0" r="7" fill="#c8a030" opacity="0.7"/></g>
+          <g transform="translate(403,248)" fill="#1a1410"><ellipse cx="0" cy="15" rx="30" ry="14" transform="rotate(-15)"/><circle cx="28" cy="-8" r="12"/><ellipse cx="38" cy="-6" rx="8" ry="6"/><path d="M22,-18 Q18,-28 24,-26 Q28,-20 26,-14Z"/><rect x="-22" y="22" width="7" height="20" rx="3" transform="rotate(5)"/><rect x="-8" y="22" width="7" height="20" rx="3"/><rect x="8" y="18" width="7" height="18" rx="3" transform="rotate(-10)"/><rect x="38" y="-20" width="5" height="20" rx="2" fill="#8b6914"/><path d="M38,-20 Q34,-34 40,-38 Q46,-34 43,-20Z" fill="#e8920a"/></g>
+          <g transform="translate(275,442)" fill="#1a1410"><rect x="-4" y="-30" width="8" height="50" rx="3"/><path d="M-4,0 Q-28,-10 -26,-26 Q-12,-20 -4,-8Z"/><path d="M4,0 Q28,-10 26,-26 Q12,-20 4,-8Z"/><ellipse cx="0" cy="-30" rx="8" ry="12"/></g>
+          <g transform="translate(405,442)"><polygon points="0,-30 7,-7 30,0 7,7 0,30 -7,7 -30,0 -7,-7" fill="#c8a030" opacity="0.85"/><circle cx="0" cy="0" r="9" fill="#1a1410"/></g>
+          <circle cx="340" cy="357" r="22" fill="#0e0c08" stroke="#c8a030" stroke-width="2"/>
+          <text x="340" y="610" text-anchor="middle" font-family="serif" font-size="16" fill="#c8a030" opacity="0.6" letter-spacing="2" font-style="italic">Iugum meum suave est</text>
+        </svg>
+      </div>
+    </div>
+    <div class="app-body">
+      <span class="app-tag">Available Now · iOS</span>
+      <h2 class="app-name">Yoke</h2>
+      <p class="app-latin">Iugum meum suave est — Matthew 11:30</p>
+      <p class="app-desc">A Catholic spiritual formation app built on the philosophy of St. Thomas Aquinas. A structured examination of conscience, vice pattern detection, mystical discernment, confession preparation, and the treasury of Catholic prayer — with the rigor of Thomistic method applied to the interior life.</p>
+      <div class="app-features">
+        <span class="feature-pill">Examination of Conscience</span>
+        <span class="feature-pill">The Mirror</span>
+        <span class="feature-pill">Mystical Discernment</span>
+        <span class="feature-pill">Lectio Divina</span>
+        <span class="feature-pill">Patron Saints</span>
+        <span class="feature-pill">Breviary</span>
+        <span class="feature-pill">Holy Rosary</span>
+        <span class="feature-pill">Confession Preparation</span>
+      </div>
+      <div class="app-actions">
+        <a href="#" class="btn-primary">Download on the App Store</a>
+        <a href="yoke-privacy" class="btn-secondary">Privacy Policy</a>
+        <span class="platform-badge">iOS · Free</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripture -->
+  <div class="scripture">
+    <blockquote>"Come to me, all you that labour and are burdened, and I will refresh you. Take up my yoke upon you and learn of me, because I am meek and humble of heart: and you shall find rest to your souls. For my yoke is sweet and my burden light."</blockquote>
+    <cite>Matthew 11:28–30 · Douay-Rheims</cite>
+  </div>
+
+  <!-- Coming soon -->
+  <p class="coming-soon-label">In Development</p>
+  <div class="coming-soon-card">
+    <div class="coming-soon-dot"></div>
+    <div class="coming-soon-text">
+      <h3>More applications forthcoming</h3>
+      <p>Additional tools for Catholic formation and intellectual life — in development.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Siena Foundation</p>
+  <div>
+    <a href="mailto:apps@sienafoundation.org">apps@sienafoundation.org</a>
+    <a href="yoke-privacy">Privacy Policy</a>
+    <a href="https://sienafoundation.org">sienafoundation.org</a>
+  </div>
+</footer>
+
+</body>
+</html>

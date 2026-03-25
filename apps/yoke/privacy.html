@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Yoke</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0906; --bg2: #110f0a; --gold: #c8a030; --gold-dim: #8a6a1a;
+    --cream: #e8e0cc; --cream-dim: #b0a888; --ink-dim: #a09878;
+    --border: rgba(200,160,48,0.2); --border-strong: rgba(200,160,48,0.4);
+  }
+  html { background: var(--bg); color: var(--cream); font-family: 'EB Garamond', Georgia, serif; }
+  body { max-width: 720px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 28px; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 4px; color: var(--gold); text-decoration: none; }
+  .back { font-size: 14px; color: var(--ink-dim); text-decoration: none; }
+  .back:hover { color: var(--gold); }
+  .overline { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 5px; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 16px; display: block; }
+  h1 { font-family: 'EB Garamond', serif; font-size: 36px; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
+  .updated { font-size: 14px; color: var(--ink-dim); margin-bottom: 32px; display: block; }
+  h2 { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin: 48px 0 14px; }
+  h3 { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; color: var(--gold-dim); text-transform: uppercase; margin: 28px 0 10px; }
+  p { font-size: 17px; color: var(--cream-dim); line-height: 1.75; margin-bottom: 16px; }
+  a { color: var(--gold); }
+  ul { list-style: none; padding-left: 0; margin-bottom: 16px; }
+  ul li { font-size: 17px; color: var(--cream-dim); line-height: 1.75; padding-left: 20px; position: relative; }
+  ul li::before { content: "\2022"; color: var(--gold-dim); position: absolute; left: 0; }
+  .short-version {
+    background: var(--bg2); border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--gold); padding: 28px 32px; margin: 24px 0 40px;
+  }
+  .short-version p { margin-bottom: 12px; }
+  .short-version p:last-child { margin-bottom: 0; }
+  .canon { font-style: italic; color: var(--cream-dim); }
+  .canon-ref { font-style: italic; color: var(--gold-dim); font-size: 15px; }
+  .canon-block {
+    background: var(--bg2); border-left: 2px solid var(--gold-dim);
+    padding: 16px 24px; margin: 12px 0 20px;
+  }
+  .canon-block .canon-latin { font-style: italic; color: var(--ink-dim); font-size: 16px; line-height: 1.7; margin-bottom: 8px; }
+  .canon-block .canon-english { font-size: 16px; color: var(--cream-dim); line-height: 1.7; }
+  .case-cite { font-style: italic; color: var(--cream-dim); }
+  .contact-card {
+    background: var(--bg2); border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--gold); padding: 28px 32px; margin: 24px 0;
+  }
+  .contact-card p { margin-bottom: 8px; }
+  .contact-card .email { font-size: 19px; color: var(--cream); }
+  footer { margin-top: 60px; border-top: 1px solid var(--border); padding-top: 24px; font-size: 13px; color: var(--ink-dim); }
+</style>
+</head>
+<body>
+<header>
+  <a href="https://sienafoundation.org" class="logo">Siena Foundation</a>
+  <a href="/apps" class="back">&larr; Back</a>
+</header>
+
+<span class="overline">Privacy Policy</span>
+<h1>Yoke Privacy Policy</h1>
+<span class="updated">Last updated: March 24, 2026</span>
+
+<div class="short-version">
+  <p><strong style="color: var(--cream);">The Short Version</strong></p>
+  <p>Yoke stores everything on your device, encrypted. We cannot see your examination of conscience, your confession preparation, your spiritual direction records, or anything you enter in the app. No one can &mdash; not even with a court order &mdash; because the data never leaves your device and the encryption key is stored in your phone&rsquo;s Secure Enclave, accessible only with your Face ID or Touch ID.</p>
+  <p>What the Siena Foundation&rsquo;s servers hold: your account identity, who your confessor or spiritual director is (by relationship, not content), and an audit log of account-level actions. That is all.</p>
+</div>
+
+<h2>1. What This App Does</h2>
+<p>Yoke is a Catholic spiritual formation app built on the philosophy of St. Thomas Aquinas. It provides tools for examination of conscience, confession preparation, virtue and vice assessment, mystical discernment, patron saint lookup, and Catholic prayer including the Liturgy of the Hours, the Rosary, and Lectio Divina.</p>
+<p>The app operates in the interior forum of the Catholic Church &mdash; the domain of conscience, confession, and spiritual direction. The entire data architecture is designed to protect that forum from any external access.</p>
+
+<h2>2. Data Stored on Your Device</h2>
+<p>The following data is stored exclusively on your device, encrypted with AES-256-GCM using a key stored in your device&rsquo;s Secure Enclave. It is never transmitted to any server. It is never backed up to iCloud. It cannot be extracted from your device without your biometric authentication.</p>
+<ul>
+  <li>All examination of conscience answers</li>
+  <li>All confession preparation records</li>
+  <li>Virtue and vice assessment results</li>
+  <li>Mystical Discernment responses</li>
+  <li>Examination of State responses</li>
+  <li>Patron saint dates and notes</li>
+  <li>Prayer history and Lectio Divina notes</li>
+  <li>Any other content you enter in the app</li>
+</ul>
+<p>If you delete the app, this data is permanently destroyed. It cannot be recovered by the Siena Foundation or by anyone else.</p>
+
+<h2>3. Data Stored on Our Servers</h2>
+<p>The Siena Foundation&rsquo;s servers hold only the following:</p>
+<ul>
+  <li><strong style="color: var(--cream);">Your account identity</strong> &mdash; a randomly generated identifier, your role, and your diocese or community if applicable</li>
+  <li><strong style="color: var(--cream);">Relationship records</strong> &mdash; who your confessor or spiritual director is, by identifier only, not by content</li>
+  <li><strong style="color: var(--cream);">Hashed unlock codes</strong> &mdash; one-way hashes used to verify confessor-penitent relationships</li>
+  <li><strong style="color: var(--cream);">Consent records</strong> &mdash; if you have initiated or responded to a support access request</li>
+  <li><strong style="color: var(--cream);">Audit log</strong> &mdash; a log of account-level actions (login, relationship changes, consent requests). The audit log contains no examination content.</li>
+</ul>
+<p>We do not collect your name, email address, phone number, location, or any personally identifying information unless you voluntarily provide it for account recovery purposes.</p>
+
+<h2>4. Encryption</h2>
+<p>All data on your device is encrypted with AES-256-GCM &mdash; the same encryption standard used by the US government for classified information. The encryption key is stored in your device&rsquo;s Secure Enclave, a dedicated security chip that is isolated from the rest of the device&rsquo;s hardware. The key is accessible only when the device is unlocked with your Face ID or Touch ID.</p>
+<p>The key never leaves your device. It is not backed up to iCloud, it cannot be transferred to another device, and it cannot be accessed by the Siena Foundation, Apple, or any third party.</p>
+<p>If you enter the wrong biometric authentication ten times, the key is destroyed and all data on the device is permanently wiped. A warning is shown at eight failed attempts.</p>
+
+<h2>5. Who Can See Your Data</h2>
+
+<h3>5.1 Confessor</h3>
+<p>Your confessor cannot see your examination answers, your confession content, or any specific information you enter in the app. The confessor relationship in Yoke is established by a one-time unlock code. The confessor&rsquo;s role is to unlock certain features of the app for you &mdash; not to receive your data.</p>
+
+<h3>5.2 Spiritual Director</h3>
+<p>Your spiritual director can see pattern-level information only &mdash; aggregate scores across virtue and vice domains, your growth trajectory over time, and any information you explicitly choose to share with them. Your spiritual director cannot see specific examination answers, specific sins or circumstances, or any information that would be subject to mandatory civil reporting obligations.</p>
+<p>This limitation exists because spiritual direction, under current canon law, does not carry the same absolute seal as sacramental confession. The app routes to the spiritual direction layer only information that your director could legitimately keep private. More would be shared if the canonical protection were stronger.</p>
+
+<h3>5.3 Siena Foundation (Developer Support)</h3>
+<p>Developer Support cannot see your examination content under any circumstances &mdash; because it never reaches our servers. For account-level issues, Developer Support may access account metadata only with your explicit consent and the explicit consent of your confessor or spiritual director, submitted independently through the app. Every field accessed is logged. Both you and your confessor/director are notified of what was accessed, when, and by whom.</p>
+
+<h3>5.4 Church Authorities</h3>
+<p>Diocesan authorities, religious superiors, and the Holy See receive only anonymized aggregate statistics &mdash; never individual data. Aggregate data is subject to a minimum cohort size of 50 users and differential privacy protections that make individual identification computationally infeasible.</p>
+
+<h3>5.5 Civil Authorities</h3>
+<p>We do not voluntarily disclose any user data to civil authorities. If served with a valid court order, we will comply with applicable law. However, we cannot disclose examination content, confession preparation data, or spiritual direction content &mdash; because we do not have it. That data exists only on your device, encrypted with a key only you can access.</p>
+<p>The sacramental seal under <span class="canon">Canon 983</span> of the Code of Canon Law is absolute and inviolable. No civil authority can compel a confessor to disclose the content of sacramental confession. The architecture of this app is designed to ensure that this protection is technically enforceable, not merely canonical.</p>
+
+<h2>6. Canonical Basis</h2>
+<p>Yoke operates within the interior forum of the Catholic Church. The following canonical provisions are the basis for the app&rsquo;s data architecture:</p>
+
+<div class="canon-block">
+  <p class="canon-ref">Can. 959</p>
+  <p class="canon-latin">In sacramento paenitentiae, fideles peccata sua legitimo ministro confiteri dolentes&hellip;</p>
+  <p class="canon-english">In the sacrament of penance the faithful who confess their sins to a legitimate minister, are sorry for them, and intend to reform themselves obtain from God through the absolution imparted by the same minister forgiveness for the sins they have committed after baptism.</p>
+</div>
+
+<div class="canon-block">
+  <p class="canon-ref">Can. 983 &sect;1</p>
+  <p class="canon-latin">Sacramentale sigillum inviolabile est; quare nefas est confessario verbis vel alio quovis modo et quavis de causa aliquatenus prodere paenitentem.</p>
+  <p class="canon-english">The sacramental seal is inviolable. It is absolutely wrong for a confessor in any way to betray the penitent, for any reason whatsoever, whether by word or in any other fashion.</p>
+</div>
+
+<div class="canon-block">
+  <p class="canon-ref">Can. 220</p>
+  <p class="canon-latin">Nemini licet bonam famam quam quis gaudet illegitime laedere, nec ius cuiusque personae ad propriam intimitatem tuendam violare.</p>
+  <p class="canon-english">No one is permitted to harm illegitimately the good reputation which a person possesses nor to injure the right of any person to protect his or her own privacy.</p>
+</div>
+
+<h2>7. US Legal Protections</h2>
+<p>The clergy-penitent privilege is recognized in US federal common law and in the statutes of all 50 states. Recent case law has extended this protection to digital formats:</p>
+<ul>
+  <li><span class="case-cite">Rodriguez-Ramirez v. State</span>, 570 P.3d 965 (Ariz. Ct. App. 2025) &mdash; The clergy-penitent privilege extends to digital recordings and transcripts of confessions.</li>
+  <li><span class="case-cite">Etienne v. Ferguson</span>, No. 3:25-cv-05461-DGE (W.D. Wash. 2025) &mdash; The Free Exercise Clause protects the sacramental seal from mandatory civil reporting requirements.</li>
+  <li><span class="case-cite">In re Grand Jury Investigation</span>, 918 F.2d 374 (3d Cir. 1990) &mdash; Federal recognition of clergy-communicant privilege for confidential spiritual communications.</li>
+  <li><span class="case-cite">California Evidence Code &sect;917(b)</span> &mdash; Electronic communications do not lose privileged character because they are stored digitally or because the storage provider may have technical access.</li>
+</ul>
+<p>The architecture of Yoke is designed to support the strongest possible privilege claim: local-only storage, AES-256-GCM encryption, Secure Enclave key storage, no third-party analytics, and dual-consent access controls.</p>
+
+<h2>8. Analytics</h2>
+<p>Yoke does not use any third-party analytics service. We do not use Mixpanel, Amplitude, Firebase Analytics, or any equivalent service. We do not know how often you use the app, which features you use, or what you enter. The only data we collect is the account-level data described in Section 3.</p>
+
+<h2>9. Changes to This Policy</h2>
+<p>If this policy changes materially, we will notify you in the app before the change takes effect. The updated policy will be posted at <a href="https://sienafoundation.org/apps/yoke-privacy">sienafoundation.org/apps/yoke-privacy</a> with a revised date.</p>
+
+<h2>10. Contact</h2>
+<p>For questions about this privacy policy or your data:</p>
+<div class="contact-card">
+  <p class="email"><a href="mailto:apps@sienafoundation.org">apps@sienafoundation.org</a></p>
+</div>
+
+<footer>&copy; 2026 Siena Foundation &middot; <a href="/apps">Back to Apps</a> &middot; <a href="yoke-support">Support</a> &middot; <a href="yoke-terms">Terms of Service</a></footer>
+</body>
+</html>
